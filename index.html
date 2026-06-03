@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Archery Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- HOME SCREEN -->
+    <div id="home-screen">
+        <div id="home-main" class="home-content">
+            <h1 class="game-logo">Archery</h1>
+            <h2 class="home-title">Choose your challenge</h2>
+            <p class="home-subtitle">Select a mode to begin your session</p>
+
+            <div class="mode-buttons">
+                <div id="mode-normal" class="mode-card active">
+                    <div class="mode-icon-box">
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="mode-svg normal-svg">
+                            <circle cx="16" cy="16" r="3.5" fill="currentColor" />
+                            <circle cx="16" cy="16" r="8" stroke="currentColor" stroke-width="3" />
+                            <circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="3" />
+                        </svg>
+                    </div>
+                    <div class="mode-text-content">
+                        <span class="mode-name">Normal</span>
+                        <span class="mode-desc">Target will be moving vertically.</span>
+                    </div>
+                    <div class="mode-radio"></div>
+                </div>
+                <div id="mode-wind" class="mode-card">
+                    <div class="mode-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round" class="mode-svg wind-svg">
+                            <path d="M12.8 19.6A2 2 0 1 0 14 16H2"></path>
+                            <path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"></path>
+                            <path d="M9.8 4.4A2 2 0 1 1 11 8H2"></path>
+                        </svg>
+                    </div>
+                    <div class="mode-text-content">
+                        <span class="mode-name">Wind Mode (Hard Mode)</span>
+                        <span class="mode-desc">The target will be moving horizontally and vertically.</span>
+                    </div>
+                    <div class="mode-radio"></div>
+                </div>
+                <div id="mode-unlimited" class="mode-card">
+                    <div class="mode-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mode-svg normal-svg">
+                            <path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4zm0 0c2 2.67 4 4 6 4a4 4 0 1 0 0-8c-2 0-4 1.33-6 4z"></path>
+                        </svg>
+                    </div>
+                    <div class="mode-text-content">
+                        <span class="mode-name">Unlimited Mode</span>
+                        <span class="mode-desc">Endless arrows. Toggle wind mid-game.</span>
+                    </div>
+                    <div class="mode-radio"></div>
+                </div>
+            </div>
+
+            <button id="play-btn" class="play-btn">Play</button>
+        </div>
+    </div>
+
+    <!-- GAME UI (hidden until Play is clicked) -->
+    <div id="ui-layer" class="hidden">
+        <div id="reward-notification"></div>
+        <div id="hit-notification"></div>
+        <div class="header">
+            <h1>Archery</h1>
+            <div class="score-container">
+                Score: <span id="score">0</span>
+            </div>
+            <div class="score-container">
+                Arrows: <span id="arrows">10</span>
+            </div>
+            <div id="wind-indicator" class="score-container wind-container" style="display:none;">
+                Wind: <span id="wind-speed">0</span>mph <span id="wind-dir">-</span>
+            </div>
+            <button id="toggle-wind-btn" class="wind-btn" style="display:none;">Wind: OFF</button>
+        </div>
+
+        <div id="instructions" class="instructions">
+            <p>Drag the arrow backward to aim.</p>
+            <p>Release to shoot the moving target.</p>
+        </div>
+
+        <div class="powerups-container">
+            <h3 class="powerups-title">Types of Arrows</h3>
+            <div class="powerups">
+                <div class="powerup-badge" data-tooltip="Explodes on impact for bonus points">Bomb 💣 (<span
+                        id="count-bomb">0</span>)</div>
+                <div class="powerup-badge" data-tooltip="Splits into 3 arrows mid-air">Splitter 🔱 (<span
+                        id="count-splitter">0</span>)</div>
+                <div class="powerup-badge" data-tooltip="Freezes target for 3 seconds">Freeze ❄️ (<span
+                        id="count-freeze">0</span>)</div>
+            </div>
+        </div>
+
+        <div id="game-over" class="hidden">
+            <h2>Out of Arrows!</h2>
+            <p>Final Score: <span id="final-score">0</span></p>
+            <button id="restart-btn">Play Again</button>
+        </div>
+    </div>
+
+    <!-- Matter.js Physics Engine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
